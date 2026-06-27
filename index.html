@@ -6,24 +6,22 @@
 <title>SANSAN GROUP — Cổng tham gia nhóm</title>
 <style>
   :root{--xanh:#229ED9;--nen:#eef2f7;--card:#fff;--chu:#1b2536;--xam:#8794a8;--vien:#e8edf4}
-  *{box-sizing:border-box;margin:0;padding:0}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
   html{scroll-behavior:smooth}
-  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--nen);color:var(--chu)}
-
+  body{background:var(--nen);color:var(--chu)}
   @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   @keyframes floatUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
   @keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(24px,-20px) scale(1.18)}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-  @keyframes pop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 
   .hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:60px 20px 116px;
-        background:linear-gradient(135deg,#229ED9 0%,#1c7fc4 38%,#5b6df0 72%,#7a4ff0 100%);
+        background:linear-gradient(135deg,#229ED9 0%,#1c7fc4 38%,#3b82f6 72%,#2563eb 100%);
         background-size:300% 300%;animation:gradientMove 14s ease infinite}
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;background:var(--nen);border-radius:50% 50% 0 0/100% 100% 0 0}
   .hero .blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;z-index:0}
   .hero .blob.b1{width:210px;height:210px;background:#7af0e0;top:-40px;left:-30px;animation:blob 9s ease-in-out infinite}
-  .hero .blob.b2{width:250px;height:250px;background:#c4b5fd;bottom:-50px;right:-40px;animation:blob 11s ease-in-out infinite reverse}
+  .hero .blob.b2{width:250px;height:250px;background:#93c5fd;bottom:-50px;right:-40px;animation:blob 11s ease-in-out infinite reverse}
   .hero .logo,.hero h1,.hero .sub,.hero .stats{position:relative;z-index:2;animation:floatUp .8s both}
   .hero h1{animation-delay:.12s}.hero .sub{animation-delay:.24s}.hero .stats{animation-delay:.36s}
   .hero .logo{width:74px;height:74px;border-radius:22px;background:rgba(255,255,255,.16);display:flex;
@@ -36,11 +34,10 @@
   .stat b{font-size:20px;display:block;font-weight:800}
   .stat span{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.5px}
 
-  .wrap{max-width:760px;margin:-44px auto 0;padding:0 16px 50px;position:relative;z-index:3}
+  .wrap{max-width:820px;margin:-44px auto 0;padding:0 16px 50px;position:relative;z-index:3}
   .timkiem{width:100%;padding:16px 18px;font-size:16px;border:1px solid var(--vien);border-radius:16px;
         outline:none;background:#fff;box-shadow:0 10px 30px rgba(20,40,80,.08)}
   .timkiem:focus{border-color:var(--xanh)}
-
   .khoi{margin-top:32px}
   .khoi-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
   .khoi-head .badge{font-size:14.5px;font-weight:700;color:#fff;background:var(--xanh);padding:7px 16px;border-radius:30px}
@@ -49,48 +46,14 @@
   .muc h3{font-size:12.5px;color:var(--xam);text-transform:uppercase;letter-spacing:.6px;margin:0 0 8px 2px;font-weight:700}
   .luoi{display:grid;grid-template-columns:1fr;gap:10px}
   @media(min-width:600px){.luoi{grid-template-columns:1fr 1fr}}
-
-  .card{display:flex;align-items:center;gap:12px;background:var(--card);padding:14px 16px;border-radius:16px;
-        border:1px solid var(--vien);cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s;animation:fadeUp .5s both}
-  .card:hover{border-color:var(--xanh);transform:translateY(-2px);box-shadow:0 12px 26px rgba(34,158,217,.16)}
-  .card .ic{width:38px;height:38px;flex:0 0 38px;border-radius:12px;background:linear-gradient(135deg,#229ED9,#5b6df0);
-        color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;transition:transform .18s}
-  .card:hover .ic{transform:scale(1.12) rotate(-6deg)}
-  .card .ten{flex:1;line-height:1.25;font-size:14.5px;font-weight:600}
-  .card .cnt{font-size:12px;color:var(--xam);background:#eef4fb;padding:3px 9px;border-radius:20px;white-space:nowrap}
-  .card .chev{color:var(--xanh);font-weight:700}
-
-  /* MODAL */
-  .overlay{position:fixed;inset:0;background:rgba(15,25,45,.5);backdrop-filter:blur(3px);
-        display:none;align-items:flex-end;justify-content:center;z-index:50;padding:0}
-  .overlay.open{display:flex}
-  @media(min-width:560px){.overlay{align-items:center;padding:20px}}
-  .modal{background:#fff;width:100%;max-width:460px;border-radius:22px 22px 0 0;animation:pop .28s ease;
-        max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
-  @media(min-width:560px){.modal{border-radius:22px}}
-  .modal .mhead{padding:20px 20px 14px;border-bottom:1px solid var(--vien);display:flex;align-items:flex-start;gap:12px}
-  .modal .mhead .ic{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:linear-gradient(135deg,#229ED9,#5b6df0);
-        color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
-  .modal .mhead .ti{flex:1}
-  .modal .mhead .ti b{font-size:16.5px;line-height:1.3;display:block}
-  .modal .mhead .ti span{font-size:12.5px;color:var(--xam)}
-  .modal .x{border:none;background:#f0f3f7;width:32px;height:32px;border-radius:50%;font-size:17px;cursor:pointer;color:#5b6b80;flex:0 0 32px}
-  .modal .mbody{padding:8px 12px;overflow-y:auto;flex:1}
-  .mrow{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:12px}
-  .mrow:nth-child(odd){background:#f7f9fc}
-  .mrow .nm{font-size:14px;font-weight:500}
-  .mrow .ph{font-size:13px;color:var(--xam);font-variant-numeric:tabular-nums;white-space:nowrap}
-  .mrow.hl{background:#fff3cd}
-  .mempty{text-align:center;color:var(--xam);padding:22px;font-size:14px}
-  .modal .mfoot{padding:14px 16px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--vien)}
-  .mfoot a{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#229ED9,#3b82f6);
-        color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:15px;border-radius:14px;transition:.15s}
-  .mfoot a:hover{filter:brightness(1.06);transform:translateY(-1px)}
-
-  .chua{margin-top:34px;background:#fff4e8;border:1px solid #ffd9b0;border-radius:16px;padding:16px}
-  .chua h3{font-size:14px;color:#b35a00;margin-bottom:8px}
-  .chua .crow{display:flex;justify-content:space-between;gap:12px;padding:6px 2px;font-size:13.5px}
-  .chua .crow .ph{color:#b08968;white-space:nowrap}
+  a.nhom{display:flex;align-items:center;gap:13px;background:var(--card);padding:14px 16px;border-radius:15px;
+        text-decoration:none;color:var(--chu);border:1px solid var(--vien);transition:transform .18s,box-shadow .18s,border-color .18s;animation:fadeUp .5s both}
+  a.nhom:hover{border-color:var(--xanh);transform:translateY(-2px);box-shadow:0 12px 26px rgba(34,158,217,.16)}
+  a.nhom .ic{width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:#eef5fb;display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .18s}
+  a.nhom:hover .ic{transform:scale(1.1) rotate(-5deg)}
+  a.nhom .ten{flex:1;line-height:1.3;font-size:14.5px;font-weight:600}
+  a.nhom .go{font-size:12px;color:var(--xanh);font-weight:700;white-space:nowrap;opacity:0;transition:.18s}
+  a.nhom:hover .go{opacity:1}
   .empty{text-align:center;color:var(--xam);padding:30px;display:none}
   footer{text-align:center;color:var(--xam);font-size:12.5px;padding:30px 16px 40px}
 </style>
@@ -100,35 +63,21 @@
     <div class="blob b1"></div><div class="blob b2"></div>
     <div class="logo">🔗</div>
     <h1>Cổng Tham Gia Nhóm</h1>
-    <div class="sub">Gõ <b>tên của bạn</b> → bấm nhóm → xem thành viên → Tham gia 👇</div>
+    <div class="sub">Tìm nhóm phòng ban của bạn → bấm vào để tham gia ngay 👇</div>
     <div class="stats">
       <div class="stat"><b>46</b><span>Nhóm</span></div>
-      <div class="stat"><b>41</b><span>Thành viên</span></div>
       <div class="stat"><b>3</b><span>Khối</span></div>
+      <div class="stat"><b>4</b><span>Phòng ban</span></div>
     </div>
   </section>
 
   <div class="wrap">
-    <input class="timkiem" id="tim" placeholder="🔍 Gõ tên bạn hoặc tên nhóm...">
+    <input class="timkiem" id="tim" placeholder="🔍 Tìm nhanh nhóm của bạn...">
     <div id="ds"></div>
-    <div class="empty" id="trong">Không tìm thấy 😕</div>
-    <div id="chuabox"></div>
+    <div class="empty" id="trong">Không tìm thấy nhóm phù hợp 😕</div>
   </div>
 
-  <!-- MODAL -->
-  <div class="overlay" id="overlay">
-    <div class="modal">
-      <div class="mhead">
-        <div class="ic">✈️</div>
-        <div class="ti"><b id="mdTen"></b><span id="mdSub"></span></div>
-        <button class="x" id="mdClose">✕</button>
-      </div>
-      <div class="mbody" id="mdBody"></div>
-      <div class="mfoot"><a id="mdJoin" target="_blank">💬 Tham gia nhóm ➜</a></div>
-    </div>
-  </div>
-
-  <footer>© SANSAN GROUP — Cổng tham gia nhóm nội bộ</footer>
+  <footer>© SANSAN GROUP — Cổng tham gia nhóm nội bộ<br>Bấm vào nhóm để mở Telegram và tham gia.</footer>
 
 <script>
 const NHOM = [
@@ -180,38 +129,44 @@ const NHOM = [
   {khoi:"KHỐI TMĐT", muc:"", ten:"GROUP KHO SANJOLI", link:"https://t.me/+feQ2ewxGPIsxYmY9"},
 ];
 
-const MEM = {
-  "Sống với Tiktok - Fb - Youtube - Biên tập":[["Hồ Cẩm Thu","0584****58"],["Đặng Phạm Thiên Khải","0968****03"]],
-  "TRỢ LÝ ACADEMY":[["Lê Võ Kim Khoa","0906****27"],["HUỲNH NHẬT BẢO CHÂU","0704****56"]],
-  "MARKETING - ACADEMY":[["Bùi Minh Thư","0707****81"],["Hồ Hoàng Giang","0375****30"],["Phan Thị Phương Thuỳ","0393****67"],["Đặng Tường Vy","0379****74"]],
-  "STYLIST - NHIẾP":[["Ca Thị Diễm Quỳnh","0377****82"],["Nguyễn Ngọc Thạch","0868****95"],["Phạm Hà Mỹ Linh","0888****58"],["Nguyễn Thị Lan Hương","0559****26"],["Nguyen Tan Tai","0898****97"],["Tran duy tien","0981****19"],["Vũ Minh Tuấn","0839****68"],["Long Chau","0372****75"]],
-  "TEAM TỔNG SALE WEDDING":[["Đặng Linh Hương","0767****37"],["Phạm Thị Sông Giang","0388****88"],["Phạm Mỹ Huyền","0888****72"]],
-  "SALE SANKID + SANSAN":[["Ngọc Trâm","0937****22"],["Trần Kim Nhạn","0921****00"],["Trần Thị Hồng Lam","0856****49"]],
-  "SALE KỶ YẾU SÀI GÒN":[["Trần Thị Cẩm Linh","0377****23"]],
-  "PTS SANSAN GROUP":[["Lê Nguyễn Ngọc Mẫn","0988****15"],["Long Nguyễn","0935****97"]],
-  "EDIT VIDEO":[["Hồ Huy Chương","0399****21"]],
-  "PHÒNG MARKETING":[["Nguyễn Thị Hồng Vân","0968****13"],["Trần Thị Quỳnh Giang","0386****89"],["NGUYỄN NGỌC PHƯƠNG TRINH","0764****17"]],
-  "THỰC TẬP SINH MKT":[["Trần Việt Hoa","0938****76"],["Trần Yến Như","0816****47"]],
-  "MAKE UP - SANSAN GROUP":[["Huỳnh Phúc Hoài","0838****06"],["Nguyễn Tuấn Kiệt","0357****42"],["Đinh Ngọc Như Thảo","0868****93"],["Phan Ngọc Thuý Vy","0333****42"]],
-  "LỄ TÂN - KẾ TOÁN":[["Nguyễn Hồ Phương Linh","0395****99"]],
-  "TỔNG THÔNG BÁO - SANJOLI":[["TRẦN NGỌC THẢO","0976****09"]],
-  "HCNS SANSAN GROUP":[["Nguyễn Thị Kim Huyền","0921****00"]],
-  "ĐIỀU PHỐI - QUẢN LÝ KHỐI STUDIO":[["Nguyễn Thị Hồng Mỵ","0396****95"]],
-};
-const CHUA = [["Bạch Thị Thúy Hạ","0385****53","Chăm sóc khách hàng"],["Bùi Văn Thương","0392****68","Design"]];
-
-let curQ = "";
-function esc(s){return s.replace(/"/g,'&quot;')}
-function khop(n,q){
-  if(!q) return true;
-  if(n.ten.toLowerCase().includes(q)) return true;
-  return (MEM[n.ten]||[]).some(m=>m[0].toLowerCase().includes(q));
+// icon liên quan tới từng nhóm (theo từ khoá)
+function iconFor(n){
+  n=n.toLowerCase();
+  if(n.includes('ck ')||n.includes('chuyển khoản'))return'💳';
+  if(n.includes('quảng cáo')||n.includes('ads'))return'📊';
+  if(n.includes('marketing'))return'📣';
+  if(n.includes('make up')||n.includes('makeup'))return'💄';
+  if(n.includes('lễ tân'))return'🛎️';
+  if(n.includes('wedding'))return'💍';
+  if(n.includes('sankid'))return'🧒';
+  if(n.includes('kỷ yếu'))return'🎓';
+  if(n.includes('stylist')||n.includes('nhiếp'))return'📸';
+  if(n.includes('pts'))return'🖌️';
+  if(n.includes('media'))return'🎬';
+  if(n.includes('hcns'))return'🧑‍💼';
+  if(n.includes('điều phối')||n.includes('quản lý')||n.includes('trợ lý'))return'🗂️';
+  if(n.includes('thực tập'))return'🌱';
+  if(n.includes('edit video')||n.includes('biên tập')||n.includes('tiktok'))return'🎞️';
+  if(n.includes('ý tưởng')||n.includes('concept'))return'💡';
+  if(n.includes('báo cáo')||n.includes('checklist')||n.includes('phiếu')||n.includes('đánh giá'))return'📋';
+  if(n.includes('nguyên liệu'))return'📦';
+  if(n.includes('it -')||n.includes('it-'))return'💻';
+  if(n.includes('noti')||n.includes('form'))return'🔔';
+  if(n.includes('kho'))return'🏬';
+  if(n.includes('thông báo'))return'📢';
+  if(n.includes('kế toán')||n.includes('thu academy')||n.includes('thu chi'))return'💰';
+  if(n.includes('chi academy'))return'📤';
+  if(n.includes('sanjoli'))return'🛍️';
+  if(n.includes('sale'))return'🛒';
+  if(n.includes('công việc'))return'🗒️';
+  if(n.includes('academy'))return'🎓';
+  return'💬';
 }
 
 function render(loc=""){
-  curQ=loc.trim().toLowerCase();
   const box=document.getElementById('ds');box.innerHTML="";
-  const ds=NHOM.filter(n=>khop(n,curQ));
+  const q=loc.toLowerCase();
+  const ds=NHOM.filter(n=>n.ten.toLowerCase().includes(q));
   const khois=[...new Set(ds.map(n=>n.khoi))];
   let co=false;
   khois.forEach(k=>{
@@ -221,49 +176,17 @@ function render(loc=""){
     const mucs=[...new Set(dsK.map(n=>n.muc))];
     mucs.forEach(m=>{
       const dsM=dsK.filter(n=>n.muc===m);
-      html+=`<div class="muc">`+(m?`<h3>${m}</h3>`:``)+`<div class="luoi">`+dsM.map((n,idx)=>{
-        const sl=(MEM[n.ten]||[]).length;
-        const cnt=sl?`<span class="cnt">👥 ${sl}</span>`:``;
-        return `<div class="card" data-ten="${esc(n.ten)}" style="animation-delay:${(idx%12)*0.05}s">
-           <span class="ic">✈️</span><span class="ten">${n.ten}</span>${cnt}<span class="chev">›</span></div>`;
-      }).join('')+`</div></div>`;
+      html+=`<div class="muc">`+(m?`<h3>${m}</h3>`:``)+`<div class="luoi">`+dsM.map((n,idx)=>
+        `<a class="nhom" href="${n.link}" target="_blank" style="animation-delay:${(idx%12)*0.05}s">
+           <span class="ic">${iconFor(n.ten)}</span><span class="ten">${n.ten}</span><span class="go">Tham gia ➜</span></a>`
+      ).join('')+`</div></div>`;
     });
     div.innerHTML=html;box.appendChild(div);
   });
   document.getElementById('trong').style.display=co?'none':'block';
-
-  const cFilter=CHUA.filter(c=>!curQ||c[0].toLowerCase().includes(curQ));
-  document.getElementById('chuabox').innerHTML = cFilter.length
-    ? `<div class="chua"><h3>⚠️ Chưa rõ nhóm — cần phân công</h3>`+
-      cFilter.map(c=>`<div class="crow"><span>👤 ${c[0]} <small style="color:#b08968">(${c[2]})</small></span><span class="ph">${c[1]}</span></div>`).join('')+`</div>`
-    : "";
 }
-
-// ===== MODAL =====
-function openModal(ten){
-  const n=NHOM.find(x=>x.ten===ten);if(!n)return;
-  const ms=MEM[ten]||[];
-  document.getElementById('mdTen').textContent=ten;
-  document.getElementById('mdSub').textContent=ms.length?`${ms.length} thành viên`:'Chưa có thành viên trong danh sách';
-  document.getElementById('mdJoin').href=n.link;
-  document.getElementById('mdBody').innerHTML = ms.length
-    ? ms.map(m=>{
-        const hl=curQ&&m[0].toLowerCase().includes(curQ)?' hl':'';
-        return `<div class="mrow${hl}"><span class="nm">👤 ${m[0]}</span><span class="ph">${m[1]}</span></div>`;
-      }).join('')
-    : `<div class="mempty">Nhóm này chưa có thành viên trong danh sách.<br>Bạn vẫn có thể bấm <b>Tham gia</b> bên dưới.</div>`;
-  document.getElementById('overlay').classList.add('open');
-}
-function closeModal(){document.getElementById('overlay').classList.remove('open')}
-
-document.getElementById('ds').addEventListener('click',e=>{
-  const c=e.target.closest('.card');if(c) openModal(c.getAttribute('data-ten'));
-});
-document.getElementById('mdClose').addEventListener('click',closeModal);
-document.getElementById('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-document.getElementById('tim').addEventListener('input',e=>render(e.target.value));
 render();
+document.getElementById('tim').addEventListener('input',e=>render(e.target.value));
 </script>
 </body>
 </html>
