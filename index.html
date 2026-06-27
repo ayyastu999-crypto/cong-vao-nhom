@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cổng vào nhóm - SANSAN GROUP</title>
+<style>
+  :root { --xanh:#0088cc; --nen:#f4f6f9; --chu:#1c2733; --xam:#7a8aa0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--nen);
+         color:var(--chu); padding:16px; max-width:780px; margin:0 auto; }
+  header { text-align:center; padding:24px 0 12px; }
+  header h1 { font-size:22px; }
+  header p { color:var(--xam); font-size:14px; margin-top:6px; }
+  .timkiem { width:100%; padding:12px 16px; font-size:16px; border:1px solid #d8e0ea;
+             border-radius:12px; margin:16px 0; outline:none; }
+  .timkiem:focus { border-color:var(--xanh); }
+  .khoi { margin-top:22px; }
+  .khoi h2 { font-size:15px; color:var(--xanh); text-transform:uppercase;
+             letter-spacing:.5px; margin-bottom:10px; padding-left:4px; }
+  .luoi { display:grid; grid-template-columns:1fr; gap:8px; }
+  @media(min-width:560px){ .luoi { grid-template-columns:1fr 1fr; } }
+  a.nhom { display:flex; align-items:center; gap:10px; background:#fff; padding:14px 16px;
+           border-radius:12px; text-decoration:none; color:var(--chu); font-size:15px;
+           border:1px solid #e6ecf3; transition:.15s; }
+  a.nhom:hover { border-color:var(--xanh); transform:translateY(-1px);
+                 box-shadow:0 4px 14px rgba(0,136,204,.12); }
+  a.nhom .icon { width:34px; height:34px; flex:0 0 34px; border-radius:50%;
+                 background:var(--xanh); color:#fff; display:flex; align-items:center;
+                 justify-content:center; font-size:16px; }
+  a.nhom.chua { opacity:.45; pointer-events:none; }
+  footer { text-align:center; color:var(--xam); font-size:12px; padding:28px 0 12px; }
+  .empty { text-align:center; color:var(--xam); padding:20px; display:none; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>🔗 Cổng vào nhóm SANSAN GROUP</h1>
+    <p>Bấm vào nhóm của bạn để tham gia. Vào đúng bộ phận của mình nhé!</p>
+  </header>
+
+  <input class="timkiem" id="tim" placeholder="🔍 Tìm nhóm...">
+  <div id="ds"></div>
+  <div class="empty" id="trong">Không tìm thấy nhóm phù hợp.</div>
+
+  <footer>SANSAN GROUP • Cổng tham gia nhóm nội bộ</footer>
+
+<script>
+// ====== DANH SÁCH NHÓM + LINK MỜI ======
+// Thay "#" bằng link mời thật của từng nhóm (dạng https://t.me/+xxxxx)
+// Nhóm nào chưa có link để "#" -> nó hiện mờ, không bấm được.
+const NHOM = [
+  // ===== KHỐI STUDIO =====
+  {khoi:"KHỐI STUDIO", ten:"CK SANSAN GROUP (BOT)", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"CK SANSAN GR 2", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"KẾ TOÁN SANSAN GROUP", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"SANSAN - CÔNG VIỆC", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"PHÒNG MARKETING", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"P. KINH DOANH MEDIA", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"HCNS SANSAN GROUP", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"STYLIST - NHIẾP", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"ĐIỀU PHỐI - QUẢN LÝ KHỐI STUDIO", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"PTS SANSAN GROUP", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"MAKE UP - SANSAN GROUP", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"LỄ TÂN - KẾ TOÁN", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"PHÒNG MEDIA", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"TEAM TỔNG SALE WEDDING", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"SALE ON WEDDING", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"TEAM SALE OFF WEDDING", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"SALE KỶ YẾU SÀI GÒN", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"SALE SANKID + SANSAN", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"THỰC TẬP SINH MKT", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"EDIT VIDEO", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"CHECK QUẢNG CÁO - MKT + SALE", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"Ý TƯỞNG CONCEPT 2026", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"SALE CHỐT ĐƠN / Ý TƯỞNG CC - SS BRIDAL", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"TỔNG TRỢ LÝ - ĐIỀU PHỐI - MỴ", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"BÁO CÁO ADS - SSG", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"ĐIỀU PHỐI - BÁO CÁO LEADER", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"EKIP - BÁO CÁO CHECKLIST", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"MKT - PTS - CSKH - LT - BÁO CÁO CHECKLIST", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"SALE - BÁO CÁO CHECKLIST", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"BC HÌNH ẢNH CHECKLIST - SANSAN GROUP", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"BÁO CÁO HĐ WEDDING-SANSAN", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"NỘP PHIẾU ĐÁNH GIÁ", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"THU CHI QUẦY - BÁO CÁO", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"NGUYÊN LIỆU SANKID - SANSAN", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"NGUYÊN LIỆU WEDDING", link:"#"},
+  {khoi:"KHỐI STUDIO", ten:"NGUYÊN LIỆU KỶ YẾU", link:"#"},
+  // ===== KHỐI ACADEMY =====
+  {khoi:"KHỐI ACADEMY", ten:"IT - SANSAN ACADEMY", link:"#"},
+  {khoi:"KHỐI ACADEMY", ten:"TRỢ LÝ ACADEMY", link:"#"},
+  {khoi:"KHỐI ACADEMY", ten:"MARKETING - ACADEMY", link:"#"},
+  {khoi:"KHỐI ACADEMY", ten:"Sống với Tiktok - Fb - Youtube - Biên tập", link:"#"},
+  {khoi:"KHỐI ACADEMY", ten:"Noti Điền Form Academy", link:"#"},
+  {khoi:"KHỐI ACADEMY", ten:"Thu Academy", link:"#"},
+  {khoi:"KHỐI ACADEMY", ten:"Chi Academy", link:"#"},
+  // ===== KHỐI TMĐT =====
+  {khoi:"KHỐI TMĐT", ten:"Kế toán SANJOLI", link:"#"},
+  {khoi:"KHỐI TMĐT", ten:"TỔNG THÔNG BÁO - SANJOLI", link:"#"},
+  {khoi:"KHỐI TMĐT", ten:"GROUP KHO SANJOLI", link:"#"},
+];
+
+function render(loc="") {
+  const box = document.getElementById('ds');
+  box.innerHTML = "";
+  const khois = [...new Set(NHOM.map(n => n.khoi))];
+  let coKetQua = false;
+  khois.forEach(k => {
+    const ds = NHOM.filter(n => n.khoi === k && n.ten.toLowerCase().includes(loc.toLowerCase()));
+    if (!ds.length) return;
+    coKetQua = true;
+    const div = document.createElement('div');
+    div.className = 'khoi';
+    div.innerHTML = `<h2>${k}</h2><div class="luoi">` + ds.map(n =>
+      `<a class="nhom ${n.link==='#'?'chua':''}" href="${n.link}" target="_blank">
+         <span class="icon">${n.link==='#'?'⏳':'➜'}</span><span>${n.ten}</span></a>`
+    ).join('') + `</div>`;
+    box.appendChild(div);
+  });
+  document.getElementById('trong').style.display = coKetQua ? 'none' : 'block';
+}
+render();
+document.getElementById('tim').addEventListener('input', e => render(e.target.value));
+</script>
+</body>
+</html>
