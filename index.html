@@ -5,110 +5,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SANSAN GROUP — Cổng tham gia nhóm</title>
 <style>
-  :root{
-    --xanh:#229ED9; --xanh2:#0f6db5; --tim:#5b6df0;
-    --nen:#0b1220; --card:#ffffff; --chu:#1b2536; --xam:#8794a8;
-    --vien:#e8edf4;
-  }
+  :root{--xanh:#229ED9;--xanh2:#0f6db5;--nen:#eef2f7;--card:#fff;--chu:#1b2536;--xam:#8794a8;--vien:#e8edf4}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-       background:#eef2f7;color:var(--chu)}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--nen);color:var(--chu)}
 
-  /* ===== ANIMATIONS ===== */
   @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
   @keyframes floatUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
   @keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(24px,-20px) scale(1.18)}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
   @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-  /* ===== HERO ===== */
-  .hero{position:relative;overflow:hidden;color:#fff;text-align:center;
-        padding:64px 20px 120px;
+  .hero{position:relative;overflow:hidden;color:#fff;text-align:center;padding:60px 20px 116px;
         background:linear-gradient(135deg,#229ED9 0%,#1c7fc4 38%,#5b6df0 72%,#7a4ff0 100%);
         background-size:300% 300%;animation:gradientMove 14s ease infinite}
-  .hero .blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;z-index:0;pointer-events:none}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;background:var(--nen);border-radius:50% 50% 0 0/100% 100% 0 0}
+  .hero .blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.5;z-index:0}
   .hero .blob.b1{width:210px;height:210px;background:#7af0e0;top:-40px;left:-30px;animation:blob 9s ease-in-out infinite}
   .hero .blob.b2{width:250px;height:250px;background:#c4b5fd;bottom:-50px;right:-40px;animation:blob 11s ease-in-out infinite reverse}
   .hero .logo,.hero h1,.hero .sub,.hero .stats{position:relative;z-index:2;animation:floatUp .8s both}
-  .hero h1{animation-delay:.12s}
-  .hero .sub{animation-delay:.24s}
-  .hero .stats{animation-delay:.36s}
-  .hero .logo{animation:floatUp .8s both, floaty 4s ease-in-out 1s infinite}
-  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:80px;
-        background:#eef2f7;border-radius:50% 50% 0 0/100% 100% 0 0}
-  .hero .logo{width:74px;height:74px;border-radius:22px;background:rgba(255,255,255,.16);
-        display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 18px;
-        backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.25)}
-  .hero h1{font-size:34px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
-  .hero .sub{font-size:16px;opacity:.92;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto}
-  .stats{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap;position:relative;z-index:2}
-  .stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);
-        border-radius:14px;padding:12px 20px;backdrop-filter:blur(4px)}
-  .stat b{font-size:22px;display:block;font-weight:800}
-  .stat span{font-size:12px;opacity:.85;text-transform:uppercase;letter-spacing:.5px}
+  .hero h1{animation-delay:.12s}.hero .sub{animation-delay:.24s}.hero .stats{animation-delay:.36s}
+  .hero .logo{width:74px;height:74px;border-radius:22px;background:rgba(255,255,255,.16);display:flex;
+        align-items:center;justify-content:center;font-size:38px;margin:0 auto 18px;border:1px solid rgba(255,255,255,.25);
+        animation:floatUp .8s both, floaty 4s ease-in-out 1s infinite}
+  .hero h1{font-size:32px;font-weight:800;letter-spacing:-.5px}
+  .hero .sub{font-size:15.5px;opacity:.92;margin-top:12px;max-width:520px;margin:12px auto 0}
+  .stats{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+  .stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:10px 18px}
+  .stat b{font-size:20px;display:block;font-weight:800}
+  .stat span{font-size:11px;opacity:.85;text-transform:uppercase;letter-spacing:.5px}
 
-  /* ===== BODY ===== */
-  .wrap{max-width:860px;margin:-46px auto 0;padding:0 16px 50px;position:relative;z-index:3}
-  .timkiem{width:100%;padding:16px 18px;font-size:16px;border:1px solid var(--vien);
-        border-radius:16px;outline:none;background:#fff;box-shadow:0 10px 30px rgba(20,40,80,.08)}
+  .wrap{max-width:760px;margin:-44px auto 0;padding:0 16px 50px;position:relative;z-index:3}
+  .timkiem{width:100%;padding:16px 18px;font-size:16px;border:1px solid var(--vien);border-radius:16px;
+        outline:none;background:#fff;box-shadow:0 10px 30px rgba(20,40,80,.08)}
   .timkiem:focus{border-color:var(--xanh)}
 
-  .khoi{margin-top:34px}
-  .khoi-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-  .khoi-head .badge{font-size:15px;font-weight:700;color:#fff;background:var(--xanh);
-        padding:7px 16px;border-radius:30px}
+  .khoi{margin-top:32px}
+  .khoi-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .khoi-head .badge{font-size:14.5px;font-weight:700;color:#fff;background:var(--xanh);padding:7px 16px;border-radius:30px}
   .khoi-head .dem{font-size:12px;color:var(--xam)}
+  .muc{margin-top:14px}
+  .muc h3{font-size:12.5px;color:var(--xam);text-transform:uppercase;letter-spacing:.6px;margin:0 0 8px 2px;font-weight:700}
+  .luoi{display:flex;flex-direction:column;gap:10px}
 
-  .muc{margin-top:16px}
-  .muc h3{font-size:12.5px;color:var(--xam);text-transform:uppercase;letter-spacing:.6px;
-        margin:0 0 10px 2px;font-weight:700}
-  .luoi{display:grid;grid-template-columns:1fr;gap:10px}
-  @media(min-width:600px){.luoi{grid-template-columns:1fr 1fr}}
+  .card{background:var(--card);border:1px solid var(--vien);border-radius:16px;overflow:hidden;animation:fadeUp .5s both}
+  .card .join{display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;color:var(--chu);font-weight:600;transition:background .15s}
+  .card .join:hover{background:#f3f8fc}
+  .card .join .ic{width:38px;height:38px;flex:0 0 38px;border-radius:12px;background:linear-gradient(135deg,#229ED9,#5b6df0);
+        color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;transition:transform .18s}
+  .card .join:hover .ic{transform:scale(1.12) rotate(-6deg)}
+  .card .join .ten{flex:1;line-height:1.25;font-size:15px}
+  .card .join .go{font-size:12px;color:var(--xanh);font-weight:700;white-space:nowrap}
+  .card.chualink .join{opacity:.45;pointer-events:none}
+  .card.chualink .join .ic{background:#c2ccdb}
+  .mems{padding:6px 14px 12px;border-top:1px dashed var(--vien);display:flex;flex-direction:column;gap:4px}
+  .mem{font-size:13.5px;display:flex;justify-content:space-between;gap:12px;padding:4px 2px}
+  .mem .nm{color:#2b3a4b;font-weight:500}
+  .mem .ph{color:var(--xam);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .mem.hl{background:#fff7d6;border-radius:8px}
 
-  a.nhom{display:flex;align-items:center;gap:12px;background:var(--card);padding:15px 16px;
-        border-radius:16px;text-decoration:none;color:var(--chu);font-size:14.5px;font-weight:500;
-        border:1px solid var(--vien);transition:transform .18s,box-shadow .18s,border-color .18s;
-        position:relative;animation:fadeUp .5s both}
-  a.nhom .ic{transition:transform .18s}
-  a.nhom:hover .ic{transform:scale(1.12) rotate(-6deg)}
-  a.nhom:hover{border-color:var(--xanh);transform:translateY(-2px);
-        box-shadow:0 12px 26px rgba(34,158,217,.16)}
-  a.nhom .ic{width:38px;height:38px;flex:0 0 38px;border-radius:12px;
-        background:linear-gradient(135deg,#229ED9,#5b6df0);color:#fff;display:flex;
-        align-items:center;justify-content:center;font-size:18px}
-  a.nhom .ten{flex:1;line-height:1.25}
-  a.nhom .go{font-size:12px;color:var(--xanh);font-weight:700;opacity:0;transition:.18s}
-  a.nhom:hover .go{opacity:1}
-  a.nhom.chua{opacity:.45;pointer-events:none}
-  a.nhom.chua .ic{background:#c2ccdb}
-
+  .chua{margin-top:34px;background:#fff4e8;border:1px solid #ffd9b0;border-radius:16px;padding:16px}
+  .chua h3{font-size:14px;color:#b35a00;margin-bottom:8px}
+  .chua .mem .ph{color:#b08968}
   .empty{text-align:center;color:var(--xam);padding:30px;display:none}
   footer{text-align:center;color:var(--xam);font-size:12.5px;padding:30px 16px 40px}
-  footer b{color:var(--chu)}
 </style>
 </head>
 <body>
-
   <section class="hero">
     <div class="blob b1"></div><div class="blob b2"></div>
     <div class="logo">🔗</div>
     <h1>Cổng Tham Gia Nhóm</h1>
-    <div class="sub">Chào mừng tới <b>SANSAN GROUP</b> — chọn phòng ban của bạn và tham gia nhóm chỉ với 1 chạm.</div>
+    <div class="sub">Gõ <b>tên của bạn</b> để tìm nhóm phòng ban → bấm tham gia ngay 👇</div>
     <div class="stats">
       <div class="stat"><b>46</b><span>Nhóm</span></div>
+      <div class="stat"><b>41</b><span>Thành viên</span></div>
       <div class="stat"><b>3</b><span>Khối</span></div>
-      <div class="stat"><b>4</b><span>Phòng ban</span></div>
     </div>
   </section>
 
   <div class="wrap">
-    <input class="timkiem" id="tim" placeholder="🔍 Tìm nhanh nhóm của bạn...">
+    <input class="timkiem" id="tim" placeholder="🔍 Gõ tên bạn hoặc tên nhóm...">
     <div id="ds"></div>
-    <div class="empty" id="trong">Không tìm thấy nhóm phù hợp 😕</div>
+    <div class="empty" id="trong">Không tìm thấy 😕</div>
+    <div id="chuabox"></div>
   </div>
 
-  <footer>© SANSAN GROUP — Cổng tham gia nhóm nội bộ<br>Bấm vào nhóm để mở Telegram và tham gia.</footer>
+  <footer>© SANSAN GROUP — Cổng tham gia nhóm nội bộ<br>Tìm tên mình → bấm nhóm → Telegram mở ra → Tham gia.</footer>
 
 <script>
 const NHOM = [
@@ -160,10 +143,45 @@ const NHOM = [
   {khoi:"KHỐI TMĐT", muc:"", ten:"GROUP KHO SANJOLI", link:"https://t.me/+feQ2ewxGPIsxYmY9"},
 ];
 
+// Thành viên theo nhóm: [Tên, SĐT che]
+const MEM = {
+  "Sống với Tiktok - Fb - Youtube - Biên tập":[["Hồ Cẩm Thu","0584****58"],["Đặng Phạm Thiên Khải","0968****03"]],
+  "TRỢ LÝ ACADEMY":[["Lê Võ Kim Khoa","0906****27"],["HUỲNH NHẬT BẢO CHÂU","0704****56"]],
+  "MARKETING - ACADEMY":[["Bùi Minh Thư","0707****81"],["Hồ Hoàng Giang","0375****30"],["Phan Thị Phương Thuỳ","0393****67"],["Đặng Tường Vy","0379****74"]],
+  "STYLIST - NHIẾP":[["Ca Thị Diễm Quỳnh","0377****82"],["Nguyễn Ngọc Thạch","0868****95"],["Phạm Hà Mỹ Linh","0888****58"],["Nguyễn Thị Lan Hương","0559****26"],["Nguyen Tan Tai","0898****97"],["Tran duy tien","0981****19"],["Vũ Minh Tuấn","0839****68"],["Long Chau","0372****75"]],
+  "TEAM TỔNG SALE WEDDING":[["Đặng Linh Hương","0767****37"],["Phạm Thị Sông Giang","0388****88"],["Phạm Mỹ Huyền","0888****72"]],
+  "SALE SANKID + SANSAN":[["Ngọc Trâm","0937****22"],["Trần Kim Nhạn","0921****00"],["Trần Thị Hồng Lam","0856****49"]],
+  "SALE KỶ YẾU SÀI GÒN":[["Trần Thị Cẩm Linh","0377****23"]],
+  "PTS SANSAN GROUP":[["Lê Nguyễn Ngọc Mẫn","0988****15"],["Long Nguyễn","0935****97"]],
+  "EDIT VIDEO":[["Hồ Huy Chương","0399****21"]],
+  "PHÒNG MARKETING":[["Nguyễn Thị Hồng Vân","0968****13"],["Trần Thị Quỳnh Giang","0386****89"],["NGUYỄN NGỌC PHƯƠNG TRINH","0764****17"]],
+  "THỰC TẬP SINH MKT":[["Trần Việt Hoa","0938****76"],["Trần Yến Như","0816****47"]],
+  "MAKE UP - SANSAN GROUP":[["Huỳnh Phúc Hoài","0838****06"],["Nguyễn Tuấn Kiệt","0357****42"],["Đinh Ngọc Như Thảo","0868****93"],["Phan Ngọc Thuý Vy","0333****42"]],
+  "LỄ TÂN - KẾ TOÁN":[["Nguyễn Hồ Phương Linh","0395****99"]],
+  "TỔNG THÔNG BÁO - SANJOLI":[["TRẦN NGỌC THẢO","0976****09"]],
+  "HCNS SANSAN GROUP":[["Nguyễn Thị Kim Huyền","0921****00"]],
+  "ĐIỀU PHỐI - QUẢN LÝ KHỐI STUDIO":[["Nguyễn Thị Hồng Mỵ","0396****95"]],
+};
+const CHUA = [["Bạch Thị Thúy Hạ","0385****53","Chăm sóc khách hàng"],["Bùi Văn Thương","0392****68","Design"]];
+
+function memRows(ten,q){
+  const ms=MEM[ten]||[];
+  if(!ms.length) return "";
+  return `<div class="mems">`+ms.map(m=>{
+    const hl=q&&m[0].toLowerCase().includes(q)?' hl':'';
+    return `<div class="mem${hl}"><span class="nm">👤 ${m[0]}</span><span class="ph">${m[1]}</span></div>`;
+  }).join('')+`</div>`;
+}
+function khop(n,q){
+  if(!q) return true;
+  if(n.ten.toLowerCase().includes(q)) return true;
+  return (MEM[n.ten]||[]).some(m=>m[0].toLowerCase().includes(q));
+}
+
 function render(loc=""){
+  const q=loc.trim().toLowerCase();
   const box=document.getElementById('ds');box.innerHTML="";
-  const lower=loc.toLowerCase();
-  const ds=NHOM.filter(n=>n.ten.toLowerCase().includes(lower));
+  const ds=NHOM.filter(n=>khop(n,q));
   const khois=[...new Set(ds.map(n=>n.khoi))];
   let co=false;
   khois.forEach(k=>{
@@ -174,15 +192,23 @@ function render(loc=""){
     mucs.forEach(m=>{
       const dsM=dsK.filter(n=>n.muc===m);
       html+=`<div class="muc">`+(m?`<h3>${m}</h3>`:``)+`<div class="luoi">`+dsM.map((n,idx)=>
-        `<a class="nhom ${n.link==='#'?'chua':''}" href="${n.link}" target="_blank" style="animation-delay:${(idx%12)*0.05}s">
-           <span class="ic">${n.link==='#'?'⏳':'✈️'}</span>
-           <span class="ten">${n.ten}</span>
-           <span class="go">Tham gia ➜</span></a>`
+        `<div class="card" style="animation-delay:${(idx%12)*0.05}s">
+           <a class="join" href="${n.link}" target="_blank">
+             <span class="ic">✈️</span><span class="ten">${n.ten}</span><span class="go">Tham gia ➜</span>
+           </a>${memRows(n.ten,q)}</div>`
       ).join('')+`</div></div>`;
     });
     div.innerHTML=html;box.appendChild(div);
   });
   document.getElementById('trong').style.display=co?'none':'block';
+
+  // Chưa phân nhóm
+  const cbox=document.getElementById('chuabox');
+  const cFilter=CHUA.filter(c=>!q||c[0].toLowerCase().includes(q));
+  cbox.innerHTML = (cFilter.length && (!q||cFilter.length))
+    ? `<div class="chua"><h3>⚠️ Chưa rõ nhóm — cần phân công</h3>`+
+      cFilter.map(c=>`<div class="mem"><span class="nm">👤 ${c[0]} <small style="color:#b08968">(${c[2]})</small></span><span class="ph">${c[1]}</span></div>`).join('')+`</div>`
+    : "";
 }
 render();
 document.getElementById('tim').addEventListener('input',e=>render(e.target.value));
