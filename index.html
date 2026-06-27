@@ -51,7 +51,9 @@
   a.nhom:hover{border-color:var(--xanh);transform:translateY(-2px);box-shadow:0 12px 26px rgba(34,158,217,.16)}
   a.nhom .ic{width:44px;height:44px;flex:0 0 44px;border-radius:9px;background:#eef5fb;display:flex;align-items:center;justify-content:center;font-size:22px;transition:transform .18s}
   a.nhom:hover .ic{transform:scale(1.1) rotate(-5deg)}
-  a.nhom .ten{flex:1;line-height:1.3;font-size:14.5px;font-weight:600}
+  a.nhom .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+  a.nhom .ten{line-height:1.25;font-size:14.5px;font-weight:600}
+  a.nhom .cnt{font-size:11.5px;color:var(--xam)}
   a.nhom .go{font-size:12px;color:var(--xanh);font-weight:700;white-space:nowrap;opacity:0;transition:.18s}
   a.nhom:hover .go{opacity:1}
   .empty{text-align:center;color:var(--xam);padding:30px;display:none}
@@ -129,6 +131,24 @@ const NHOM = [
   {khoi:"KHỐI TMĐT", muc:"", ten:"GROUP KHO SANJOLI", link:"https://t.me/+feQ2ewxGPIsxYmY9"},
 ];
 
+/*COUNTS_START*/
+const COUNTS = {
+"CK SANSAN GROUP (BOT)":3,"CK SANSAN GR 2":3,"KẾ TOÁN SANSAN GROUP":3,"SANSAN - CÔNG VIỆC":3,
+"PHÒNG MARKETING":4,"P. KINH DOANH MEDIA":3,"HCNS SANSAN GROUP":3,"STYLIST - NHIẾP":3,
+"ĐIỀU PHỐI - QUẢN LÝ KHỐI STUDIO":3,"PTS SANSAN GROUP":3,"MAKE UP - SANSAN GROUP":3,"LỄ TÂN - KẾ TOÁN":4,
+"PHÒNG MEDIA":3,"TEAM TỔNG SALE WEDDING":3,"SALE ON WEDDING":3,"TEAM SALE OFF WEDDING":3,"SALE KỶ YẾU SÀI GÒN":3,
+"SALE SANKID + SANSAN":4,"THỰC TẬP SINH MKT":3,"EDIT VIDEO":3,"CHECK QUẢNG CÁO - MKT + SALE":3,
+"Ý TƯỞNG CONCEPT 2026":3,"SALE CHỐT ĐƠN / Ý TƯỞNG CC - SS BRIDAL":3,"TỔNG TRỢ LÝ - ĐIỀU PHỐI - MỴ":3,
+"BÁO CÁO ADS - SSG":3,"ĐIỀU PHỐI - BÁO CÁO LEADER":3,"EKIP - BÁO CÁO CHECKLIST":3,
+"MKT - PTS - CSKH - LT - BÁO CÁO CHECKLIST":3,"SALE - BÁO CÁO CHECKLIST":3,"BC HÌNH ẢNH CHECKLIST - SANSAN GROUP":3,
+"BÁO CÁO HĐ WEDDING-SANSAN":3,"NỘP PHIẾU ĐÁNH GIÁ":3,"THU CHI QUẦY - BÁO CÁO":3,
+"NGUYÊN LIỆU SANKID - SANSAN":3,"NGUYÊN LIỆU WEDDING":3,"NGUYÊN LIỆU KỶ YẾU":3,
+"IT - SANSAN ACADEMY":4,"TRỢ LÝ ACADEMY":3,"MARKETING - ACADEMY":3,"Sống với Tiktok - Fb - Youtube - Biên tập":3,
+"Noti Điền Form Academy":3,"Thu Academy":3,"Chi Academy":3,
+"Kế toán SANJOLI":3,"TỔNG THÔNG BÁO - SANJOLI":3,"GROUP KHO SANJOLI":1
+};
+/*COUNTS_END*/
+
 // icon liên quan tới từng nhóm (theo từ khoá)
 function iconFor(n){
   n=n.toLowerCase();
@@ -178,7 +198,9 @@ function render(loc=""){
       const dsM=dsK.filter(n=>n.muc===m);
       html+=`<div class="muc">`+(m?`<h3>${m}</h3>`:``)+`<div class="luoi">`+dsM.map((n,idx)=>
         `<a class="nhom" href="${n.link}" target="_blank" style="animation-delay:${(idx%12)*0.05}s">
-           <span class="ic">${iconFor(n.ten)}</span><span class="ten">${n.ten}</span><span class="go">Tham gia ➜</span></a>`
+           <span class="ic">${iconFor(n.ten)}</span>
+           <span class="info"><span class="ten">${n.ten}</span><span class="cnt">👥 ${COUNTS[n.ten]||0} thành viên</span></span>
+           <span class="go">Tham gia ➜</span></a>`
       ).join('')+`</div></div>`;
     });
     div.innerHTML=html;box.appendChild(div);
